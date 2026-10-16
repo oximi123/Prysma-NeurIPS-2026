@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "models": [
+    "LLaVA-Video-7B",
+    "VideoLLaMA2-7B"
+  ],
+  "datasets": {
+    "MSVD-QA": {
+      "video_limit": 1000,
+      "train_ratio": 0.4
+    },
+    "MSRVTT-QA": {
+      "video_limit": 1000,
+      "train_ratio": 0.4
+    },
+    "EgoTimeQA": {
+      "video_limit": null,
+      "train_ratio": 0.3
+    }
+  },
+  "slos": [
+    0.5,
+    1.0,
+    2.0
+  ],
+  "methods": [
+    "VT",
+    "Random",
+    "SCOOT",
+    "LLMConf",
+    "OPPerTune",
+    "Prysma"
+  ],
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "budget": 30,
+  "knowledge_base_fraction": 0.1,
+  "similarity_thresholds": [
+    0.0,
+    0.05,
+    0.1,
+    0.15,
+    0.2,
+    0.25,
+    0.3,
+    0.35,
+    0.4,
+    0.45,
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.7,
+    0.75,
+    0.8,
+    0.85,
+    0.9,
+    0.95,
+    1.0
+  ],
+  "runtime": {
+    "data_root": "data",
+    "preprocess_root": "preprocessing",
+    "cache_root": "cache/main_result_v1",
+    "output_root": "results/fig5",
+    "device": "cuda:0",
+    "server_host": "127.0.0.1",
+    "server_ports": {
+      "frame": 9999,
+      "visiontoken": 9998,
+      "caption": 9997,
+      "object": 9996,
+      "ocr": 9995,
+      "asr": 9994,
+      "clip": 9993
+    },
+    "socket_timeout_seconds": 3600,
+    "judge": {
+      "model": "gpt-3.5-turbo-0125",
+      "api_base": "https://api.openai.com/v1",
+      "api_key_env": "OPENAI_API_KEY",
+      "timeout_seconds": 120,
+      "max_attempts": 3
+    },
+    "feature_model": "openai/clip-vit-large-patch14-336",
+    "sentence_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "model_paths": {
+      "LLaVA-Video-7B": "model/LLaVA-Video-7B-Qwen2",
+      "VideoLLaMA2-7B": "model/VideoLLaMA2-7B-16F",
+      "caption_llava": "model/llava-1.5-7b-hf",
+      "caption_lavila": "model/LaViLa/ckpt_base.pt",
+      "object_clip": "ViT-B/32",
+      "dinov2": "model/tool_models/facebookresearch_dinov2_main",
+      "rtdetr": "model/rtdetr-l.pt",
+      "ape_config": "preprocess_servers/APE/configs/LVISCOCOCOCOSTUFF_O365_OID_VGR_SA1B_REFCOCO_GQA_PhraseCut_Flickr30k/ape_deta/ape_deta_vitl_eva02_clip_vlf_lsj1024_cp_16x4_1080k.py",
+      "ape_checkpoint": "model/ape/APELD/model_final.pth"
+    },
+    "serving_context": {
+      "hardware": "2x NVIDIA H800",
+      "batch_size": 1,
+      "concurrency": 1,
+      "dtype": "bfloat16",
+      "engine": "transformers"
+    },
+    "latency_profiles": {
+      "LLaVA-Video-7B": "profiles/llava_video_7b.json",
+      "VideoLLaMA2-7B": "profiles/videollama2_7b.json"
+    }
+  }
+}

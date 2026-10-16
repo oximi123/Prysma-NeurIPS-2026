@@ -1,0 +1,50 @@
+# Local environments and Python build products
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+build/
+dist/
+*.egg-info/
+
+# Local credentials and settings
+.env
+.env.*
+!.env.example
+configs/local*.json
+*.pem
+*.key
+
+# Downloaded assets and generated files
+data/
+dataset/
+model/
+models/
+cache/
+preprocessing/
+results/
+profiles/
+tmp/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.pkl
+*.mp4
+*.avi
+*.mkv
+*.webm
+*.wav
+
+# Upstream sources installed separately
+preprocess_servers/LaViLa/
+preprocess_servers/Katna/
+preprocess_servers/APE/configs/
+
+# Editor and operating-system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
